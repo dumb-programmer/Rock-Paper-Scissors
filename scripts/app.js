@@ -48,7 +48,7 @@ function game() {
         else if (result == "It's a tie!") {
             i--;
         }
-        console.log(`Round ${i+1}`);
+        console.log(`Round ${i + 1}`);
         console.log(result);
     }
     if (score > 2) {
