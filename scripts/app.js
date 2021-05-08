@@ -34,3 +34,24 @@ function playRound(playerSelection, computerSelection) {
         return "It's a tie!";
     }
 }
+
+function game() {
+    let score = 0;
+    const rounds = 5;
+    for (let i = 0; i < rounds; i++) {
+        const playerSelection = prompt("Enter a choice: (Rock, Paper, or Scissors : ");
+        const computerSelection = computerPlay();
+        const result = playRound(playerSelection, computerSelection);
+        if (result.substring(0, 7) == "You Win") {
+            score++;
+        }
+    }
+    if (score > 2) {
+        return "You Win!";
+    }
+    else {
+        return "You Lose";
+    }
+}
+
+console.log(game());
