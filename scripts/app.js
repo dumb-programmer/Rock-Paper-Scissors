@@ -45,6 +45,11 @@ function game() {
         if (result.substring(0, 7) == "You Win") {
             score++;
         }
+        else if (result == "It's a tie!") {
+            i--;
+        }
+        console.log(`Round ${i+1}`);
+        console.log(result);
     }
     if (score > 2) {
         return "You Win!";
