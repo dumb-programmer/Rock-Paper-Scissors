@@ -56,7 +56,7 @@ let compScore = 0;
 //     });
 // })
 
-// TODO : Fix the issue of scores don't being checked before the button being clicked
+// TODO : Fix the issue of scores not being checked before the button being clicked
 // TODO: Disable the buttons and ask the user to refresh once the game has ended
 
 buttons.forEach((button) => {
