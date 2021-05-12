@@ -35,28 +35,59 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    let score = 0;
-    const rounds = 5;
-    for (let i = 0; i < rounds; i++) {
-        const playerSelection = prompt("Enter a choice: (Rock, Paper, or Scissors : ");
-        const computerSelection = computerPlay();
-        const result = playRound(playerSelection, computerSelection);
-        if (result.substring(0, 7) == "You Win") {
-            score++;
-        }
-        else if (result == "It's a tie!") {
-            i--;
-        }
-        console.log(`Round ${i + 1}`);
-        console.log(result);
-    }
-    if (score > 2) {
-        return "You Win!";
-    }
-    else {
-        return "You Lose";
-    }
-}
+const buttons = document.querySelectorAll("button");
+const result = document.querySelector(".result");
+const scoreBoard = document.querySelector(".score-board");
 
-console.log(game());
+let playerScore = 0;
+let compScore = 0;
+
+
+// buttons.forEach((button) => {
+//     button.addEventListener('mousemove', () => {
+//         if (playerScore === 5) {
+//             result.textContent = "You Win :)";
+//             return;
+//         }
+//         else if (compScore === 5) {
+//             result.textContent = "You Loose :(";
+//             return;
+//         }
+//     });
+// })
+
+// TODO : Fix the issue of scores don't being checked before the button being clicked
+// TODO: Disable the buttons and ask the user to refresh once the game has ended
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        game(button);
+    });
+})
+
+
+function game(button) {
+    result.textContent = playRound(button.textContent, "rock");
+
+    if (playerScore === 5) {
+        result.textContent = "You Win :)";
+        return;
+    }
+    else if (compScore === 5) {
+        result.textContent = "You Loose :(";
+        return;
+    }
+
+
+    if (result.textContent.substring(0, 7) == "You Win") {
+        playerScore++;
+        if (compScore > 0) compScore--;
+    }
+
+    else if (result.textContent.substring(0, 9) == "You Lose!") {
+        if (playerScore) playerScore--;
+        compScore++;
+    }
+
+    scoreBoard.textContent = `Your Score : ${playerScore} \nComputer Score: ${compScore}`;
+}
